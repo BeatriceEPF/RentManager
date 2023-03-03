@@ -7,6 +7,8 @@ public class Vehicle {
 
     private int id;
     private String constructeur;
+
+    private int modele;
     private int nb_places;
 
     // Constructeurs \\
@@ -25,6 +27,9 @@ public class Vehicle {
         return constructeur;
     }
 
+    public int getModele() {
+        return modele;
+    }
 
     public int getNb_places() {
         return nb_places;

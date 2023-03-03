@@ -65,5 +65,4 @@ public class VehicleService {
 	public static int count() throws ServiceException, DaoException {
 		return VehicleDao.count();
 	}
-
 }

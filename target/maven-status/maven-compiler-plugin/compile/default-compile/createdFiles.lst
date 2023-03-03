@@ -1,2 +1,8 @@
-com\epf\rentmanager\exception\ServletException.class
+com\epf\rentmanager\servlet\ClientCreateServlet.class
+com\epf\rentmanager\servlet\ReservationCreateServlet.class
+com\epf\rentmanager\servlet\VehicleCreateServlet.class
+com\epf\rentmanager\servlet\ClientListServlet.class
 com\epf\rentmanager\servlet\HomeServlet.class
+com\epf\rentmanager\servlet\ReservationListServlet.class
+com\epf\rentmanager\exception\ServletException.class
+com\epf\rentmanager\servlet\VehicleListServlet.class

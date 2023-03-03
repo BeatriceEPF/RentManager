@@ -1,19 +1,25 @@
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\CLI.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\TestPerso.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\ui\UI.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
-C:\Users\beatr\OneDrive\Bureau\Cours EPF 4A MIN\Langage JAVA\Séance 4\rentmanager\src\main\java\com\epf\rentmanager\exception\ServletException.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientListServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationCreateServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleCreateServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleListServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\ui\UI.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationListServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientCreateServlet.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\TestPerso.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\exception\ServletException.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\CLI.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
+C:\Users\beatr\OneDrive\Bureau\LangageJAVA\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java

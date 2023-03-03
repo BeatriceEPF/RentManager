@@ -149,17 +149,13 @@ public class ReservationDao {
 	}
 
 	public List<Reservation> findAll() throws DaoException {
+		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 		try
 		{
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(FIND_RESERVATIONS_QUERY);
 
 			ResultSet rs = stmt.executeQuery();
-
-			stmt.close();
-			connection.close();
-
-			ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
@@ -172,11 +168,15 @@ public class ReservationDao {
 
 				reservationList.add(reservation);
 			}
+
+			stmt.close();
+			connection.close();
+
 			return reservationList;
 		}
 		catch (SQLException e)
 		{
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 	}
 
