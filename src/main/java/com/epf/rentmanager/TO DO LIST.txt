@@ -1,0 +1,4 @@
+TO DO LIST :
+
+- Créer les Interfaces Utilisateur (Exercice 5 et 6 1/2)
+- Relier la suppression des Clients / Véhicules aux Réservations en cours
