@@ -19,8 +19,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ClientDao {
-	
-	private static ClientDao instance = null;
 
 	private ClientDao() {}
 	

@@ -31,7 +31,7 @@ public class ReservationService {
         return this.reservationDao.findResaByVehicleId(vehicleId);
     }
 
-    public List<Reservation> findResaByClientId(long clientId) throws ServiceException, DaoException {
+    public List<Reservation> findResaByClientId(int clientId) throws ServiceException, DaoException {
         return this.reservationDao.findResaByClientId(clientId);
     }
 

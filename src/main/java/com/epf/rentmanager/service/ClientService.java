@@ -1,6 +1,9 @@
 package com.epf.rentmanager.service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +18,6 @@ import org.springframework.stereotype.Service;
 public class ClientService {
 
 	private ClientDao clientDao;
-	public static ClientService instance;
 
 	private ClientService(ClientDao clientDao){
 		this.clientDao = clientDao;
@@ -40,9 +42,17 @@ public class ClientService {
 		return this.clientDao.findById(id);
 	}
 
-	public List<Client> findAll() throws ServiceException, DaoException {
+	public List<Client> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients -- DID
-		return this.clientDao.findAll();
+		List<Client> listClients = new ArrayList<Client>();
+		try
+		{
+			listClients = this.clientDao.findAll();
+		}
+		catch (DaoException e){
+			throw new ServiceException();
+		}
+		return listClients;
 	}
 
 	public void isValidClient(Client client) throws ServiceException
@@ -55,5 +65,10 @@ public class ClientService {
 
 	public static int count() throws ServiceException, DaoException {
 		return ClientDao.count();
+	}
+
+
+	public static boolean isLegal(Client client) {
+		return client.getBirthdate().until(LocalDate.now(), ChronoUnit.YEARS)  >= 18;
 	}
 }

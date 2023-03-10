@@ -7,6 +7,7 @@ com\epf\rentmanager\servlet\ClientListServlet.class
 com\epf\rentmanager\model\Vehicle.class
 com\epf\rentmanager\servlet\HomeServlet.class
 com\epf\rentmanager\dao\ClientDao.class
+com\epf\rentmanager\servlet\ClientDetailsServlet.class
 com\epf\rentmanager\servlet\ReservationListServlet.class
 com\epf\rentmanager\exception\ServletException.class
 com\epf\rentmanager\servlet\VehicleListServlet.class

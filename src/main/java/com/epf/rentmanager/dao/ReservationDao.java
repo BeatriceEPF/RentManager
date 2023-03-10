@@ -84,17 +84,14 @@ public class ReservationDao {
 		}
 	}
 
-	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
+	public List<Reservation> findResaByClientId(int clientId) throws DaoException {
 		try
 		{
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
 
-			stmt.setLong(1, clientId);
+			stmt.setInt(1, clientId);
 			ResultSet rs = stmt.executeQuery();
-
-			stmt.close();
-			connection.close();
 
 			ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 
@@ -102,18 +99,21 @@ public class ReservationDao {
 				Reservation reservation = new Reservation();
 
 				reservation.setId(rs.getInt("id"));
-				reservation.setClient(clientDao.findById(rs.getInt("client_id")));
+				reservation.setClient(clientDao.findById(clientId));
 				reservation.setVehicule(vehicleDao.findById(rs.getInt("vehicle_id")));
 				reservation.setDebut(rs.getDate("debut").toLocalDate());
 				reservation.setFin(rs.getDate("fin").toLocalDate());
 
 				reservationList.add(reservation);
 			}
+			stmt.close();
+			connection.close();
+
 			return reservationList;
 		}
 		catch (SQLException e)
 		{
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 	}
 	
@@ -126,9 +126,6 @@ public class ReservationDao {
 			stmt.setLong(1, vehicleId);
 			ResultSet rs = stmt.executeQuery();
 
-			stmt.close();
-			connection.close();
-
 			ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 
 			while(rs.next()) {
@@ -136,12 +133,15 @@ public class ReservationDao {
 
 				reservation.setId(rs.getInt("id"));
 				reservation.setClient(clientDao.findById(rs.getInt("client_id")));
-				reservation.setVehicule(vehicleDao.findById(rs.getInt("vehicle_id")));
+				reservation.setVehicule(vehicleDao.findById(vehicleId));
 				reservation.setDebut(rs.getDate("debut").toLocalDate());
 				reservation.setFin(rs.getDate("fin").toLocalDate());
 
 				reservationList.add(reservation);
 			}
+			stmt.close();
+			connection.close();
+
 			return reservationList;
 		}
 		catch (SQLException e)

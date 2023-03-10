@@ -1,1 +1,2 @@
-epf/AppTest.class
+com\epf\rentmanager\app\AppTest.class
+com\epf\rentmanager\service\ClientServiceTest.class

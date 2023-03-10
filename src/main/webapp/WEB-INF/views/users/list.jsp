@@ -46,7 +46,7 @@
                                         <a class="btn btn-primary disabled" href="car-detail.html">
                                             <i class="fa fa-play"></i>
                                         </a>
-                                        <a class="btn btn-success disabled" href="#">
+                                        <a class="btn btn-success" value="${client.id}" href="${pageContext.request.contextPath}/users/details?clientId=${client.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a class="btn btn-danger disabled" href="#">
