@@ -6,7 +6,7 @@ public class Client {
 
     // Attributs \\
 
-    private long id;
+    private int id;
     private String name;
     private String firstName;
     private String email;
@@ -31,7 +31,7 @@ public class Client {
 
     // Getters \\
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -55,7 +55,7 @@ public class Client {
     // Setters \\
 
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

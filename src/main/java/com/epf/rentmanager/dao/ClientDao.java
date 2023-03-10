@@ -14,18 +14,15 @@ import java.util.Optional;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
+
+@Repository
 public class ClientDao {
 	
 	private static ClientDao instance = null;
 
 	private ClientDao() {}
-	public static ClientDao getInstance() {
-		if(instance == null) {
-			instance = new ClientDao();
-		}
-		return instance;
-	}
 	
 	private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
@@ -40,8 +37,8 @@ public class ClientDao {
 
 			stmt.setString(1, client.getName());
 			stmt.setString(2, client.getFirstName());
-			stmt.setString(2, client.getEmail());
-			stmt.setDate(3, Date.valueOf(client.getBirthdate()));
+			stmt.setString(3, client.getEmail());
+			stmt.setDate(4, Date.valueOf(client.getBirthdate()));
 
 			stmt.executeUpdate();
 			ResultSet resultSet = stmt.getGeneratedKeys();
@@ -57,7 +54,7 @@ public class ClientDao {
 		}
 		catch (SQLException e)
 		{
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 	}
 	
@@ -82,7 +79,7 @@ public class ClientDao {
 		}
 	}
 
-	public Client findById(long id) throws DaoException {
+	public Client findById(int id) throws DaoException {
 		try
 		{
 			Connection connection = ConnectionManager.getConnection();

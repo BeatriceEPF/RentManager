@@ -9,22 +9,18 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class VehicleDao {
 	
 	private static VehicleDao instance = null;
 	private VehicleDao() {}
-	public static VehicleDao getInstance() {
-		if(instance == null) {
-			instance = new VehicleDao();
-		}
-		return instance;
-	}
 	
-	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
+	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
+	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
 
 
 	public long create(Vehicle vehicle) throws DaoException {
@@ -34,23 +30,24 @@ public class VehicleDao {
 			PreparedStatement stmt = connection.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setString(1, vehicle.getConstructeur());
-			stmt.setInt(2, vehicle.getNb_places());
+			stmt.setString(2, vehicle.getModele());
+			stmt.setInt(3, vehicle.getNb_places());
 
 			stmt.executeUpdate();
 			ResultSet resultSet = stmt.getGeneratedKeys();
-
-			stmt.close();
-			connection.close();
 
 			int id = 0;
 			if (resultSet.next()) {
 				id = resultSet.getInt("id");
 			}
+			stmt.close();
+			connection.close();
+
 			return id;
 		}
 		catch (SQLException e)
 		{
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 	}
 
@@ -87,6 +84,7 @@ public class VehicleDao {
 			if(rs.next()) {
 				vehicle.setId(rs.getInt("id"));
 				vehicle.setConstructeur(rs.getString("constructeur"));
+				vehicle.setModele(rs.getString("modele"));
 				vehicle.setNb_places(rs.getInt("nb_places"));
 			}
 			stmt.close();
@@ -115,6 +113,7 @@ public class VehicleDao {
 				Vehicle vehicle = new Vehicle();
 				vehicle.setId(rs.getInt("id"));
 				vehicle.setConstructeur(rs.getString("constructeur"));
+				vehicle.setModele(rs.getString("modele"));
 				vehicle.setNb_places(rs.getInt("nb_places"));
 
 				vehicles.add(vehicle);
@@ -127,7 +126,7 @@ public class VehicleDao {
 		catch (SQLException e)
 		{
 			e.printStackTrace();
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 		
 	}
@@ -148,7 +147,7 @@ public class VehicleDao {
 		}
 		catch (SQLException e)
 		{
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 	}
 	

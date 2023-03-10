@@ -35,7 +35,6 @@
                                 </tr>
 
                                 <tr>
-
                                 <c:forEach items="${clients}" var="client">
                                     <td>${client.id}.</td>
                                     <td>${client.name}</td>

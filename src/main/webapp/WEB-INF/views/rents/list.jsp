@@ -28,8 +28,8 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Voiture</th>
                                     <th>Client</th>
+                                    <th>Voiture </th>
                                     <th>Debut</th>
                                     <th>Fin</th>
                                     <th>Action</th>
@@ -37,8 +37,8 @@
                                 <tr>
                                  <c:forEach items="${reservations}" var="reservation">
                                  <td>${reservation.id}.</td>
-                                 <td>${reservation.client_id}</td>
-                                 <td>${reservation.vehicule_id}</td>
+                                 <td>${reservation.client.firstName} ${reservation.client.name}</td>
+                                 <td>${reservation.vehicule.constructeur} ${reservation.vehicule.modele}</td>
                                  <td>${reservation.debut}</td>
                                  <td>${reservation.fin}</td>
 

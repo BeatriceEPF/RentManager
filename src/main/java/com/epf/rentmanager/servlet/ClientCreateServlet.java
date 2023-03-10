@@ -2,6 +2,8 @@ package com.epf.rentmanager.servlet;
 
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +15,15 @@ import java.time.LocalDate;
 
 @WebServlet("/users/create")
 public class ClientCreateServlet extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
+    @Autowired ClientService clientService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -31,12 +40,14 @@ public class ClientCreateServlet extends HttpServlet {
             LocalDate birthdate = LocalDate.parse(request.getParameter("birthdate"));
 
             Client client = new Client(-1, name, firstName, email, birthdate);
-            ClientService.getInstance().create(client);
+            clientService.create(client);
+
         }
         catch(Exception e)
         {
-            throw new ServletException(e);
+            e.printStackTrace();
+            throw new ServletException(e.getMessage());
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
+        response.sendRedirect("/rentmanager/users");
     }
 }

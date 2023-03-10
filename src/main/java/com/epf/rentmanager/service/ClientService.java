@@ -9,25 +9,18 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
 	private ClientDao clientDao;
 	public static ClientService instance;
-	
-	private ClientService() {
-		this.clientDao = ClientDao.getInstance();
+
+	private ClientService(ClientDao clientDao){
+		this.clientDao = clientDao;
 	}
-	
-	public static ClientService getInstance() {
-		if (instance == null) {
-			instance = new ClientService();
-		}
-		
-		return instance;
-	}
-	
-	
+
 	public long create(Client client) throws DaoException, ServiceException {
 		// TODO: créer un client -- DID
 		try
@@ -42,7 +35,7 @@ public class ClientService {
 		}
 	}
 
-	public Client findById(long id) throws ServiceException, DaoException {
+	public Client findById(int id) throws ServiceException, DaoException {
 		// TODO: récupérer un client par son id -- DID
 		return this.clientDao.findById(id);
 	}

@@ -7,14 +7,25 @@ public class Reservation {
     // Attributs \\
 
     private int id;
-    private int client_id;
-    private int vehicule_id;
+    private Client client;
+    private Vehicle vehicule;
     private LocalDate debut;
     private LocalDate fin;
 
 
     // Constructeurs \\
 
+    public Reservation() {
+
+    }
+
+    public Reservation(int id, Client client, Vehicle vehicule, LocalDate debut, LocalDate fin) {
+        this.id = id;
+        this.client = client;
+        this.vehicule = vehicule;
+        this.debut = debut;
+        this.fin = fin;
+    }
 
     // Méthodes \\
 
@@ -25,12 +36,12 @@ public class Reservation {
         return id;
     }
 
-    public int getClient_id() {
-        return client_id;
+    public Client getClient() {
+        return client;
     }
 
-    public int getVehicule_id() {
-        return vehicule_id;
+    public Vehicle getVehicule() {
+        return vehicule;
     }
 
     public LocalDate getDebut() {
@@ -48,12 +59,12 @@ public class Reservation {
         this.id = id;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public void setVehicule_id(int vehicule_id) {
-        this.vehicule_id = vehicule_id;
+    public void setVehicule(Vehicle vehicule) {
+        this.vehicule = vehicule;
     }
 
     public void setDebut(LocalDate debut) {
@@ -67,8 +78,8 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation n°" + this.id + " : \n" +
-                "client_id = " + this.client_id + '\n' +
-                "vehicule_id = " + this.vehicule_id + '\n' +
+                "client_id = " + this.client + '\n' +
+                "vehicule_id = " + this.vehicule + '\n' +
                 "debut = " + this.debut + '\n' +
                 "debut = " + this.fin;
     }

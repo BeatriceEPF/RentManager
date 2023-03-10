@@ -1,2 +1,5 @@
-package com.epf.rentmanager.service;public class ClientService {
+package com.epf.rentmanager.service;
+
+public class ClientService {
+    
 }

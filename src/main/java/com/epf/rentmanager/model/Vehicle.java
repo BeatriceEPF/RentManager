@@ -7,11 +7,19 @@ public class Vehicle {
 
     private int id;
     private String constructeur;
-
-    private int modele;
+    private String modele;
     private int nb_places;
 
     // Constructeurs \\
+
+    public Vehicle(){}
+
+    public Vehicle(int id, String constructeur, String modele, int nb_places) {
+        this.id = id;
+        this.constructeur = constructeur;
+        this.modele = modele;
+        this.nb_places = nb_places;
+    }
 
 
     // Méthodes \\
@@ -27,7 +35,7 @@ public class Vehicle {
         return constructeur;
     }
 
-    public int getModele() {
+    public String getModele() {
         return modele;
     }
 
@@ -40,6 +48,10 @@ public class Vehicle {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setModele(String modele) {
+        this.modele = modele;
     }
 
     public void setConstructeur(String constructeur) {
