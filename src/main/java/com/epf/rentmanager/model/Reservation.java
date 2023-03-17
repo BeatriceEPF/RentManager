@@ -83,4 +83,12 @@ public class Reservation {
                 "debut = " + this.debut + '\n' +
                 "debut = " + this.fin;
     }
+
+    public int compareBeginDate(Reservation reservation)
+    {
+        if(this.debut.isBefore(reservation.getDebut())) return -1;
+        else if (this.debut.isAfter(reservation.getDebut())) return 1;
+        return 0;
+    }
+
 }

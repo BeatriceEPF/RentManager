@@ -22,21 +22,26 @@ public class VehicleService {
 		this.vehicleDao = vehicleDao;
 	}
 
-	public long create(Vehicle vehicle) throws ServiceException, DaoException {
-		// TODO: créer un véhicule --DID
+	public long create(Vehicle vehicle) throws ServiceException {
 		try{
 			isValidVehicle(vehicle);
 			return this.vehicleDao.create(vehicle);
 		}
-		catch(ServiceException e)
+		catch(DaoException e)
 		{
 			throw new ServiceException(e.getMessage());
 		}
 	}
 
-	public Vehicle findById(long id) throws ServiceException, DaoException {
-		// TODO: récupérer un véhicule par son id --DID
-		return this.vehicleDao.findById(id);
+	public Vehicle findById(long id) throws ServiceException {
+		try
+		{
+			return this.vehicleDao.findById(id);
+		}
+		catch (DaoException e)
+		{
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
 	public List<Vehicle> findAll() throws ServiceException, DaoException {
@@ -44,19 +49,49 @@ public class VehicleService {
 		return this.vehicleDao.findAll();
 	}
 
-	public void isValidVehicle(Vehicle vehicle) throws ServiceException
-	{
-		if(vehicle.getNb_places() < 1)
-		{
-			throw new ServiceException("Nombre de places inférieur à 1");
-		}
-		if(vehicle.getConstructeur().equals(""))
-		{
-			throw new ServiceException("constructeur vide");
-		}
-	}
-
 	public static int count() throws ServiceException, DaoException {
 		return VehicleDao.count();
 	}
+
+
+
+	public void isValidVehicle(Vehicle vehicule) throws ServiceException {
+		if(!isLong(vehicule))
+		{
+			throw new ServiceException("Nombre de places insuffisant");
+		}
+		if(!isShort(vehicule))
+		{
+			throw new ServiceException("Nombre de places trop important");
+		}
+		if(!hasConstructor(vehicule))
+		{
+			throw new ServiceException("constructeur vide");
+		}
+		if(!hasModel(vehicule))
+		{
+			throw new ServiceException("modèle vide");
+		}
+	}
+
+	public static boolean isLong(Vehicle vehicule) throws ServiceException
+	{
+		return vehicule.getNb_places() >= 2;
+	}
+
+	public static boolean isShort(Vehicle vehicule) throws ServiceException
+	{
+		return vehicule.getNb_places() <= 9;
+	}
+
+	public static boolean hasConstructor(Vehicle vehicule) throws ServiceException
+	{
+		return !vehicule.getConstructeur().equals("");
+	}
+
+	public static boolean hasModel(Vehicle vehicule) throws ServiceException
+	{
+		return !vehicule.getModele().equals("");
+	}
+
 }

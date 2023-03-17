@@ -1,5 +1,6 @@
 package com.epf.rentmanager.servlet;
 
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 public class VehicleCreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    private static String vehicleException = "";
     @Autowired VehicleService vehicleService;
     @Override
     public void init() throws ServletException {
@@ -30,6 +31,7 @@ public class VehicleCreateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        request.setAttribute("vehicleException", vehicleException);
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/create.jsp").forward(request, response);
     }
 
@@ -43,13 +45,15 @@ public class VehicleCreateServlet extends HttpServlet {
 
             Vehicle vehicle = new Vehicle(-1, manufacturer, modele, seats);
             vehicleService.create(vehicle);
+            vehicleException = "";
 
+            response.sendRedirect("/rentmanager/cars");
         }
-        catch(Exception e)
+        catch(ServiceException e)
         {
-            e.printStackTrace();
-            throw new ServletException(e.getMessage());
+            vehicleException = e.getMessage();
+            request.setAttribute("vehicleException", vehicleException);
+            doGet(request, response);
         }
-        response.sendRedirect("/rentmanager/cars");
     }
 }

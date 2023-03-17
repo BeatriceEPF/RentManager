@@ -23,7 +23,7 @@ public class ClientService {
 		this.clientDao = clientDao;
 	}
 
-	public long create(Client client) throws DaoException, ServiceException {
+	public long create(Client client) throws ServiceException {
 		// TODO: créer un client -- DID
 		try
 		{
@@ -31,15 +31,21 @@ public class ClientService {
 			client.setName(client.getName().toUpperCase());
 			return this.clientDao.create(client);
 		}
-		catch (ServiceException e)
+		catch (DaoException e)
 		{
 			throw new ServiceException(e.getMessage());
 		}
 	}
 
-	public Client findById(int id) throws ServiceException, DaoException {
-		// TODO: récupérer un client par son id -- DID
-		return this.clientDao.findById(id);
+	public Client findById(int id) throws ServiceException {
+		try
+		{
+			return this.clientDao.findById(id);
+		}
+		catch (DaoException e)
+		{
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
 	public List<Client> findAll() throws ServiceException {
@@ -55,20 +61,49 @@ public class ClientService {
 		return listClients;
 	}
 
-	public void isValidClient(Client client) throws ServiceException
-	{
-		if(client.getName().equals("") || client.getFirstName().equals(""))
-		{
-			throw new ServiceException("Nom ou Prénom vide");
-		}
-	}
-
 	public static int count() throws ServiceException, DaoException {
 		return ClientDao.count();
 	}
 
 
+
+	public void isValidClient(Client client) throws ServiceException {
+		if(!isLong(client))
+		{
+			throw new ServiceException("Nom ou Prénom trop court");
+		}
+		if(!isLegal(client))
+		{
+			throw new ServiceException("Client mineur");
+		}
+		if(!isNewEmail(client))
+		{
+			throw new ServiceException("Email existant");
+		}
+	}
+
+	public static boolean isLong(Client client) throws ServiceException {
+		return client.getName().length() >= 3 & client.getFirstName().length() >= 3;
+	}
+
 	public static boolean isLegal(Client client) {
 		return client.getBirthdate().until(LocalDate.now(), ChronoUnit.YEARS)  >= 18;
+	}
+
+	public boolean isNewEmail(Client client) throws ServiceException {
+		boolean nouveau = true;
+		try{
+			for (Client clients : this.clientDao.findAll()) {
+				if (clients.getEmail().equals(client.getEmail())) {
+					nouveau = false;
+					break;
+				}
+			}
+		}
+		catch (DaoException e)
+		{
+			e.printStackTrace();
+		}
+		return nouveau;
 	}
 }

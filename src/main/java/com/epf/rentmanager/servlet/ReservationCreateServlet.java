@@ -23,7 +23,7 @@ import java.time.LocalDate;
 public class ReservationCreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    private static String rentException = "";
     @Autowired VehicleService vehicleService;
     @Autowired ClientService clientService;
     @Autowired ReservationService reservationService;
@@ -37,6 +37,7 @@ public class ReservationCreateServlet extends HttpServlet {
     {
         try
         {
+            request.setAttribute("rentException", rentException);
             request.setAttribute("vehicles", vehicleService.findAll());
             request.setAttribute("clients", clientService.findAll());
         }
@@ -62,12 +63,14 @@ public class ReservationCreateServlet extends HttpServlet {
 
             Reservation reservation = new Reservation(-1, client, car, begin, end);
             reservationService.create(reservation);
+
+            response.sendRedirect("/rentmanager/rents");
         }
-        catch(Exception e)
+        catch(ServiceException e)
         {
-            e.printStackTrace();
-            throw new ServletException(e.getMessage());
+            rentException = e.getMessage();
+            request.setAttribute("rentException", rentException);
+            doGet(request, response);
         }
-        response.sendRedirect("/rentmanager/rents");
     }
 }

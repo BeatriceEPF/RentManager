@@ -55,6 +55,7 @@
                                         <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Date de naissance">
                                     </div>
                                 </div>
+                                <div class="col-sm-10"> ! ${clientException}</div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">

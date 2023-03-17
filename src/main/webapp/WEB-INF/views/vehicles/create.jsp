@@ -67,6 +67,7 @@
                                     </div>
                                 </div>
                                 -->
+                                <div class="col-sm-10"> ! ${vehicleException}</div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">

@@ -68,6 +68,7 @@
                                     <input type="date" class="form-control" id="end" name="end" placeholder="Date de fin">
                                 </div>
                             </div>
+                            <div class="col-sm-10"> ! ${rentException}</div>
 
                             </div>
                             <!-- /.box-body -->

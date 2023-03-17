@@ -10,6 +10,8 @@ com\epf\rentmanager\dao\ClientDao.class
 com\epf\rentmanager\servlet\ClientDetailsServlet.class
 com\epf\rentmanager\servlet\ReservationListServlet.class
 com\epf\rentmanager\exception\ServletException.class
+com\epf\rentmanager\service\ReservationService$1.class
+com\epf\rentmanager\service\ReservationService$BeginDateComparator.class
 com\epf\rentmanager\servlet\VehicleListServlet.class
 com\epf\rentmanager\service\ClientService.class
 com\epf\rentmanager\dao\VehicleDao.class
