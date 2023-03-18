@@ -31,6 +31,7 @@
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Email</th>
+                                    <th>Date de naissance</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -43,13 +44,13 @@
                                     <td>${client.birthdate}</td>
 
                                     <td>
-                                        <a class="btn btn-primary disabled" href="car-detail.html">
+                                        <a class="btn btn-primary disabled" value="${client.id}" href="#">
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success" value="${client.id}" href="${pageContext.request.contextPath}/users/details?clientId=${client.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger disabled" href="#">
+                                        <a class="btn btn-danger" value="${client.id}" href="${pageContext.request.contextPath}/users/delete?clientId=${client.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

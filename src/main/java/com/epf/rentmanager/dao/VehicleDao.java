@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 import org.springframework.stereotype.Repository;
@@ -67,7 +68,7 @@ public class VehicleDao {
 		}
 		catch (SQLException e)
 		{
-			throw new DaoException();
+			throw new DaoException(e.getMessage());
 		}
 	}
 
@@ -150,6 +151,4 @@ public class VehicleDao {
 			throw new DaoException(e.getMessage());
 		}
 	}
-	
-
 }

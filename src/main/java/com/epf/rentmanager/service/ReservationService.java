@@ -39,17 +39,54 @@ public class ReservationService {
         }
     }
 
-    public List<Reservation> findResaByVehicleId(long vehicleId) throws ServiceException, DaoException {
-        return this.reservationDao.findResaByVehicleId(vehicleId);
+    public long delete(Reservation reservation) throws ServiceException {
+        try
+        {
+            return this.reservationDao.delete(reservation);
+        }
+        catch (DaoException e)
+        {
+            throw new ServiceException(e.getMessage());
+        }
     }
 
-    public List<Reservation> findResaByClientId(int clientId) throws ServiceException, DaoException {
-        return this.reservationDao.findResaByClientId(clientId);
+    public List<Reservation> findResaByVehicleId(long vehicleId) throws ServiceException {
+        try {
+            return this.reservationDao.findResaByVehicleId(vehicleId);
+        }
+        catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    public Reservation findResaById(int id) throws ServiceException {
+        try {
+            return this.reservationDao.findResaById(id);
+        }
+        catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    public List<Reservation> findResaByClientId(int clientId) throws ServiceException {
+        try {
+            return this.reservationDao.findResaByClientId(clientId);
+        }
+        catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
     }
 
 
-    public List<Reservation> findAll() throws ServiceException, DaoException {
-        return this.reservationDao.findAll();
+    public List<Reservation> findAll() throws ServiceException {
+        try
+        {
+            return this.reservationDao.findAll();
+        }
+        catch (DaoException e)
+        {
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     public void isValidVehicle(Vehicle vehicle) throws ServiceException

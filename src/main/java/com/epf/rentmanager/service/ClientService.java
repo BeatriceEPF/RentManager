@@ -37,6 +37,19 @@ public class ClientService {
 		}
 	}
 
+
+	public long delete(Client client) throws ServiceException {
+		try
+		{
+			return this.clientDao.delete(client);
+		}
+		catch (DaoException e)
+		{
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
+
 	public Client findById(int id) throws ServiceException {
 		try
 		{
@@ -56,7 +69,7 @@ public class ClientService {
 			listClients = this.clientDao.findAll();
 		}
 		catch (DaoException e){
-			throw new ServiceException();
+			throw new ServiceException(e.getMessage());
 		}
 		return listClients;
 	}

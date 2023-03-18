@@ -43,14 +43,14 @@
                                  <td>${reservation.fin}</td>
 
                                  <td>
-                                     <a class="btn btn-primary disabled" href="car-detail.html">
+                                     <a class="btn btn-primary disabled" href="#">
                                          <i class="fa fa-play"></i>
                                      </a>
-                                     <a class="btn btn-success disabled" href="#">
+                                     <a class="btn btn-success" value="${reservation.id}" href="${pageContext.request.contextPath}/rents/details?reservationId=${reservation.id}">
                                          <i class="fa fa-edit"></i>
                                      </a>
-                                     <a class="btn btn-danger disabled" href="#">
-                                         <i class="fa fa-trash"></i>
+                                     <a class="btn btn-danger" value="${reservation.id}" href="${pageContext.request.contextPath}/rents/delete?reservationId=${reservation.id}">
+                                        <i class="fa fa-trash"></i>
                                      </a>
                                  </td>
                                  </tr>

@@ -27,7 +27,7 @@
                                     <b>Reservation(s)</b> <a class="pull-right">${reservationCount}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">${vehiclesCount}</a>
+                                    <b>Voiture(s)</b> <a class="pull-right">${vehicleCount}</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +75,7 @@
                                             <th style="width: 10px">#</th>
                                             <th>Constructeur</th>
                                             <th>Modele</th>
-                                            <th style=>Nombre de places</th>
+                                            <th>Nombre de places</th>
                                         </tr>
 
                                         <tr>

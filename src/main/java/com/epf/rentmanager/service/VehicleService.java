@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class VehicleService {
 
-	private VehicleDao vehicleDao;
+	private final VehicleDao vehicleDao;
 	public static VehicleService instance;
 	
 	private VehicleService(VehicleDao vehicleDao) {
@@ -33,6 +33,17 @@ public class VehicleService {
 		}
 	}
 
+	public long delete(Vehicle vehicle) throws ServiceException {
+		try
+		{
+			return this.vehicleDao.delete(vehicle);
+		}
+		catch (DaoException e)
+		{
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
 	public Vehicle findById(long id) throws ServiceException {
 		try
 		{
@@ -44,16 +55,18 @@ public class VehicleService {
 		}
 	}
 
-	public List<Vehicle> findAll() throws ServiceException, DaoException {
-		// TODO: récupérer tous les clients --DID
-		return this.vehicleDao.findAll();
+	public List<Vehicle> findAll() throws ServiceException {
+		try{
+			return this.vehicleDao.findAll();
+		}
+		catch (DaoException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
 	public static int count() throws ServiceException, DaoException {
 		return VehicleDao.count();
 	}
-
-
 
 	public void isValidVehicle(Vehicle vehicule) throws ServiceException {
 		if(!isLong(vehicule))

@@ -22,8 +22,8 @@ import org.springframework.stereotype.Repository;
 public class ReservationDao {
 
 	private static ReservationDao instance = null;
-	private ClientDao clientDao;
-	private VehicleDao vehicleDao;
+	private final ClientDao clientDao;
+	private final VehicleDao vehicleDao;
 	private ReservationDao(ClientDao clientDao, VehicleDao vehicleDao) {
 		this.clientDao = clientDao;
 		this.vehicleDao = vehicleDao;
@@ -33,6 +33,8 @@ public class ReservationDao {
 	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM Reservation WHERE id=?;";
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
+
+	private static final String FIND_RESERVATION_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 		
 	public long create(Reservation reservation) throws DaoException {
@@ -64,13 +66,13 @@ public class ReservationDao {
 		}
 	}
 	
-	public long delete(Reservation reservation) throws DaoException {
+	public int delete(Reservation reservation) throws DaoException {
 		try
 		{
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(DELETE_RESERVATION_QUERY);
 
-			stmt.setLong(1, reservation.getId());
+			stmt.setInt(1, reservation.getId());
 
 			stmt.executeUpdate();
 			stmt.close();
@@ -81,6 +83,36 @@ public class ReservationDao {
 		catch (SQLException e)
 		{
 			throw new DaoException();
+		}
+	}
+
+
+	public Reservation findResaById(int id) throws DaoException {
+		try
+		{
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement stmt = connection.prepareStatement(FIND_RESERVATION_QUERY);
+
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			Reservation reservation = new Reservation();
+
+			if(rs.next()) {
+				reservation.setId(rs.getInt("id"));
+				reservation.setClient(clientDao.findById(rs.getInt("client_id")));
+				reservation.setVehicule(vehicleDao.findById(rs.getInt("vehicle_id")));
+				reservation.setDebut(rs.getDate("debut").toLocalDate());
+				reservation.setFin(rs.getDate("fin").toLocalDate());
+			}
+			stmt.close();
+			connection.close();
+
+			return reservation;
+		}
+		catch (SQLException e)
+		{
+			throw new DaoException(e.getMessage());
 		}
 	}
 
