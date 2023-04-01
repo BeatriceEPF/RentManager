@@ -1,6 +1,9 @@
 com\epf\rentmanager\model\Reservation.class
 com\epf\rentmanager\servlet\cars\VehicleDetailsServlet.class
+com\epf\rentmanager\servlet\rents\ReservationEditServlet.class
+com\epf\rentmanager\servlet\users\ClientEditServlet.class
 com\epf\rentmanager\dao\ReservationDao.class
+com\epf\rentmanager\servlet\cars\VehicleEditServlet.class
 com\epf\rentmanager\model\Vehicle.class
 com\epf\rentmanager\dao\ClientDao.class
 com\epf\rentmanager\servlet\cars\VehicleListServlet.class

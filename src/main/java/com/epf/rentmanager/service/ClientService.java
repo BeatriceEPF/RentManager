@@ -37,6 +37,20 @@ public class ClientService {
 		}
 	}
 
+	public long edit(Client client) throws ServiceException {
+		// TODO: créer un client -- DID
+		try
+		{
+			isValidExistedClient(client);
+			client.setName(client.getName().toUpperCase());
+			return this.clientDao.edit(client);
+		}
+		catch (DaoException e)
+		{
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
 
 	public long delete(Client client) throws ServiceException {
 		try
@@ -80,7 +94,7 @@ public class ClientService {
 
 
 
-	public void isValidClient(Client client) throws ServiceException {
+	public void isValidExistedClient(Client client) throws ServiceException {
 		if(!isLong(client))
 		{
 			throw new ServiceException("Nom ou Prénom trop court");
@@ -89,10 +103,10 @@ public class ClientService {
 		{
 			throw new ServiceException("Client mineur");
 		}
-		if(!isNewEmail(client))
-		{
-			throw new ServiceException("Email existant");
-		}
+	}
+
+	public void isValidClient(Client client) throws ServiceException {
+
 	}
 
 	public static boolean isLong(Client client) throws ServiceException {

@@ -39,6 +39,17 @@ public class ReservationService {
         }
     }
 
+    public long edit(Reservation reservation, Reservation lastRent) throws ServiceException {
+        try{
+            isValidReservation(reservation);
+            return this.reservationDao.edit(reservation);
+        }
+        catch(DaoException e)
+        {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
     public long delete(Reservation reservation) throws ServiceException {
         try
         {
@@ -89,18 +100,6 @@ public class ReservationService {
         }
     }
 
-    public void isValidVehicle(Vehicle vehicle) throws ServiceException
-    {
-        if(vehicle.getNb_places() < 1)
-        {
-            throw new ServiceException("Nombre de places inférieur à 1");
-        }
-        if(vehicle.getConstructeur().equals(""))
-        {
-            throw new ServiceException("constructeur vide");
-        }
-    }
-
     public static int count() throws ServiceException, DaoException {
         return ReservationDao.count();
     }
@@ -111,6 +110,10 @@ public class ReservationService {
         {
             throw new ServiceException("Réservation supérieure à 7 jours");
         }
+        if (isValidDates(reservation))
+        {
+            throw new ServiceException("Les dates de réservation sont invalides");
+        }
         if (isAlreadyReserved(reservation))
         {
             throw new ServiceException("Véhicule déjà réservé pendant la période selectionnée");
@@ -118,10 +121,6 @@ public class ReservationService {
         if (isTooReserved(reservation))
         {
             throw new ServiceException("Véhicule déjà réservé pendant 30 jours de suite");
-        }
-        if (isValidDates(reservation))
-        {
-            throw new ServiceException("Les dates de réservation sont invalides");
         }
     }
 
@@ -136,8 +135,11 @@ public class ReservationService {
                 if(reservations.getDebut().isBefore(reservation.getFin()) ||
                         reservations.getFin().isAfter(reservations.getDebut()))
                 {
-                    isReserved = true;
-                    break;
+                    if(reservations.getId()!=reservation.getId())
+                    {
+                        isReserved = true;
+                        break;
+                    }
                 }
             }
         }

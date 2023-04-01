@@ -44,10 +44,10 @@
                                     <td>${client.birthdate}</td>
 
                                     <td>
-                                        <a class="btn btn-primary disabled" value="${client.id}" href="#">
+                                        <a class="btn btn-primary" value="${client.id}" href="${pageContext.request.contextPath}/users/details?clientId=${client.id}">
                                             <i class="fa fa-play"></i>
                                         </a>
-                                        <a class="btn btn-success" value="${client.id}" href="${pageContext.request.contextPath}/users/details?clientId=${client.id}">
+                                        <a class="btn btn-success" value="${client.id}" href="${pageContext.request.contextPath}/users/edit?clientId=${client.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a class="btn btn-danger" value="${client.id}" href="${pageContext.request.contextPath}/users/delete?clientId=${client.id}">

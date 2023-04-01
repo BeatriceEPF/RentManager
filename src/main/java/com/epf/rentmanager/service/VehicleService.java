@@ -33,6 +33,17 @@ public class VehicleService {
 		}
 	}
 
+	public long edit(Vehicle vehicle) throws ServiceException {
+		try{
+			isValidVehicle(vehicle);
+			return this.vehicleDao.edit(vehicle);
+		}
+		catch(DaoException e)
+		{
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
 	public long delete(Vehicle vehicle) throws ServiceException {
 		try
 		{

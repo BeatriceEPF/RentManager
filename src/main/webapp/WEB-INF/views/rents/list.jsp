@@ -43,10 +43,10 @@
                                  <td>${reservation.fin}</td>
 
                                  <td>
-                                     <a class="btn btn-primary disabled" href="#">
+                                     <a class="btn btn-primary" value="${reservation.id}" href="${pageContext.request.contextPath}/rents/details?reservationId=${reservation.id}">
                                          <i class="fa fa-play"></i>
                                      </a>
-                                     <a class="btn btn-success" value="${reservation.id}" href="${pageContext.request.contextPath}/rents/details?reservationId=${reservation.id}">
+                                     <a class="btn btn-success" value="${reservation.id}" href="${pageContext.request.contextPath}/rents/edit?reservationId=${reservation.id}">
                                          <i class="fa fa-edit"></i>
                                      </a>
                                      <a class="btn btn-danger" value="${reservation.id}" href="${pageContext.request.contextPath}/rents/delete?reservationId=${reservation.id}">
